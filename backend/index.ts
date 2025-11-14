@@ -13,9 +13,26 @@ const PORT = process.env.PORT || 4000;
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(express.json());
+
+// Dynamic CORS configuration
+const allowedOrigins = process.env.CORS_ORIGIN?.split(",") || [];
+
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN?.split(",") || ["https://summerizer-app-pro.vercel.app"],
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like mobile apps or Postman)
+      if (!origin) return callback(null, true);
+      
+      // Check if origin is in allowed list or matches Vercel pattern
+      if (
+        allowedOrigins.includes(origin) ||
+        origin.includes('.vercel.app')
+      ) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     credentials: true,
   })
 );
