@@ -15,19 +15,20 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN?.split(",") || ["http://localhost:5173"],
+    origin: process.env.CORS_ORIGIN?.split(",") || ["http://localhost:5174"],
     credentials: true,
   })
 );
 
-// Health check
-app.get("/health", (req, res) => {
-  res.json({ status: "ok", timestamp: new Date().toISOString() });
+app.get("/api/hello", (req, res) => {
+  res.json({ message: "Hello from Express!" });
 });
 
-// API routes
-app.get("/api", (req, res) => {
-  res.json({ message: "API is running" });
+app.get("/api/users", (req, res) => {
+  res.json([
+    { id: 1, name: "Alice" },
+    { id: 2, name: "Bob" },
+  ]);
 });
 
 app.listen(PORT, () => {
