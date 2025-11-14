@@ -15,7 +15,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN?.split(",") || ["http://localhost:5174"],
+    origin: process.env.CORS_ORIGIN?.split(",") || ["https://summerizer-app-pro.vercel.app"],
     credentials: true,
   })
 );
