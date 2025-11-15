@@ -1,14 +1,17 @@
 import { Router } from "express";
 import { controllers } from "../controllers/summerizerController";
 
-const router = Router()
+const router = Router();
 
-const {controller, getProductReviews, summerizeReviews } = controllers
+const { controller, getProductReviews, summerizeReviews } = controllers;
 
-router.get('/api/ask', controller)
+// Health check
+router.get('/api/health', controller); // ✅ Changed from /ask
 
-router.post("/api/product/:id/summerise", summerizeReviews)
-router.get("/api/product/:id/review", getProductReviews)
+// Summarize reviews (fixed spelling)
+router.post("/api/products/:id/summarize", summerizeReviews); // ✅ summarize not summerise
 
+// Get product reviews
+router.get("/api/products/:id/reviews", getProductReviews); // ✅ plural /products, /reviews
 
-export default router
+export default router;
