@@ -3,6 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import dotenv from "dotenv";
+import router from "./routes/summerizerRoute";
 
 dotenv.config();
 
@@ -16,7 +17,6 @@ app.use(express.json());
 
 // Dynamic CORS configuration
 const allowedOrigins = process.env.CORS_ORIGIN?.split(",") || [];
-
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -36,6 +36,8 @@ app.use(
     credentials: true,
   })
 );
+
+app.use(router)
 
 app.get("/api/hello", (req, res) => {
   res.json({ message: "Hello from Express!" });
