@@ -1,4 +1,4 @@
-import { PrismaClient, type Review, type Product, } from "../generated/prisma/client";
+import { PrismaClient, type Review, type Product, } from '@prisma/client'
 import dayjs from "dayjs";
 // import { PrismaClient } from "../generated/prisma/client";
 

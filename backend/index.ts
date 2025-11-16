@@ -48,6 +48,18 @@ app.use(
 app.use(router)
 app.use(errorHandler)
 
+app.get('/', (req, res) => {
+  res.json({ 
+    status: 'ok', 
+    message: 'Summerizer API is running',
+    endpoints: {
+      health: '/api/health',
+      products: '/api/products/:id/reviews',
+      summarize: '/api/products/:id/summarize'
+    }
+  });
+});
+
 app.get("/api/hello", (req, res) => {
   res.json({ message: "Hello from Express!" });
 });
