@@ -1,6 +1,9 @@
 import axios from "axios"
 
 
+
+const API_URL = import.meta.env.VITE_API_URL || ''
+
 export type Review = {
     id: number
     author: string
@@ -27,14 +30,14 @@ export type GetSummaryResponse = {
 export const ReviewsApi = {
 
     async summeriseReviews (productId: number){
-        const { data } = await axios.post<GetSummaryResponse>(`api/products/${productId}/summarize`)
+        const { data } = await axios.post<GetSummaryResponse>(`${API_URL}api/products/${productId}/summarize`)
         console.log(data)
 
         return data
     },
 
     async fetchReviews (productId: number){
-        const {data} = await axios.get<getReviewResponse>(`api/products/${productId}/reviews`);
+        const {data} = await axios.get<getReviewResponse>(`${API_URL}/api/products/${productId}/reviews`);
       
       return data
     }
