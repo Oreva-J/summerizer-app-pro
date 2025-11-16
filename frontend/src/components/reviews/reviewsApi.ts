@@ -27,14 +27,14 @@ export type GetSummaryResponse = {
 export const ReviewsApi = {
 
     async summeriseReviews (productId: number){
-        const { data } = await axios.post<GetSummaryResponse>(`api/products/${productId}/summerize`)
+        const { data } = await axios.post<GetSummaryResponse>(`api/products/${productId}/summarize`)
+        console.log(data)
 
         return data
     },
 
     async fetchReviews (productId: number){
         const {data} = await axios.get<getReviewResponse>(`api/products/${productId}/reviews`);
-        console.log(data)
       
       return data
     }

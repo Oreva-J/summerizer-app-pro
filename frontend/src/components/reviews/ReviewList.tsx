@@ -3,6 +3,8 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { ReviewsApi, type getReviewResponse, type GetSummaryResponse, type Props } from "./reviewsApi"
 import LoadingSkeleton from "./LoadingSkeleton"
 import StarRating from "./StarRating"
+import { HiSparkles } from "react-icons/hi"
+import { Button } from "../ui/button"
 
 const ReviewList = ({productId}: Props) => {
     const queryClient = useQueryClient()
@@ -19,7 +21,7 @@ const ReviewList = ({productId}: Props) => {
       }
     })
 
-    // const currentSummary = getReviews?.summary ?? summaryMutation.data?.summary
+    const currentSummary = getReviews?.summary ?? summaryMutation.data?.summary
 
     if(isLoading){
       return( <div className="flex flex-col gap-5"> {
@@ -41,6 +43,12 @@ const ReviewList = ({productId}: Props) => {
 
   return (
     <div>
+        <div className="mb-2">
+        {currentSummary ? <p> {currentSummary} </p> :  <div className="py-3"><Button className="cursor-pointer" onClick={()=> summaryMutation.mutate()} disabled={summaryMutation.isPending}> <HiSparkles /> Summarize </Button> {summaryMutation.isPending && <LoadingSkeleton />}</div>
+        }
+        {summaryMutation.isError && <p className="text-red-400">could not summarise reviews try again</p> }
+
+      </div>
       <div className="flex flex-col gap-5">{getReviews?.reviews.map((items, index)=>(
         <div key={index} className="">
             <p className="font-semibold">{items.author}</p>

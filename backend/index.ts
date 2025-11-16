@@ -23,6 +23,13 @@ app.use(
     origin: (origin, callback) => {
       // Allow requests with no origin (like mobile apps or Postman)
       if (!origin) return callback(null, true);
+
+      // In development, allow all localhost
+      if (process.env.NODE_ENV === 'development') {
+        if (origin.includes('localhost') || origin.includes('127.0.0.1')) {
+          return callback(null, true);
+        }
+      }
       
       // Check if origin is in allowed list or matches Vercel pattern
       if (
