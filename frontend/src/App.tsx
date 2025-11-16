@@ -1,4 +1,5 @@
 // import { useState, useEffect } from 'react'
+import ReviewList from './components/reviews/reviewList'
 import { Button } from './components/ui/button'
 
 function App() {
@@ -9,10 +10,9 @@ function App() {
   
 
   return (
-    <div className="flex justify-center bg-red-100">
-      <h1>Monorepo App</h1>
-      <p>Message from API: </p>
-      <Button>Click me</Button>
+    <div className="h-screen w-full p-8">
+    
+      <ReviewList productId={2} />
     </div>
   )
 }
