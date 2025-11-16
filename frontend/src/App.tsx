@@ -1,22 +1,18 @@
-import { useState, useEffect } from 'react'
-import './App.css'
+// import { useState, useEffect } from 'react'
+import { Button } from './components/ui/button'
 
 function App() {
-  const [message, setMessage] = useState('')
+  
 
-  const apiUrl = import.meta.env.VITE_API_URL || ''
+  // const apiUrl = import.meta.env.VITE_API_URL || ''
 
-  useEffect(() => {
-    fetch(`${apiUrl}/api/hello`)
-      .then(res => res.json())
-      .then(data => setMessage(data.message))
-      .catch(err => console.error(err))
-  }, [])
+  
 
   return (
-    <div className="App">
+    <div className="flex justify-center bg-red-100">
       <h1>Monorepo App</h1>
-      <p>Message from API: {message}</p>
+      <p>Message from API: </p>
+      <Button>Click me</Button>
     </div>
   )
 }
