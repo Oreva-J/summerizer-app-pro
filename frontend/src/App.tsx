@@ -1,4 +1,4 @@
-import ReviewList from './components/reviews/reviewList'
+import ReviewList from './components/reviews/ReviewList'
 
 const App = () => {
   return (
